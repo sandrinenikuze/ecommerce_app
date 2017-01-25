@@ -1,0 +1,9 @@
+<h1>Product</h1>
+
+<h2><%= @product.name %></h2>
+<h2><%= @product.price%></h2>
+<h2><%=@product.description%></h2>
+<img src="<%= @product.image %>">
+
+<%= button_to "Delete", "/products/#{@product.id}", method: :delete %>
+<%= button_to "Edit", "/products/#{@product.id}/edit", method: :get %>
