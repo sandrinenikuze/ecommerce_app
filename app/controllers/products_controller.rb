@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
      product.description = params[:description]
      product.image = params[:image]
      product.save
+     flash[:success] = "Product update"
      redirect_to "/products"
 
    end
@@ -38,6 +39,7 @@ class ProductsController < ApplicationController
    def destroy
      @product = Product.find_by(id: params[:id])
      @product.destroy
+     flash[:warning] = "Product deleted"
      redirect_to "/products"
    end
 end
