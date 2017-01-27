@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
   def index
+    sort_variable = params[:sort]
+    if sort
+      @products = Product.price.order(sort_variable: :desc)
+    else
     @products = Product.all
+  end
   end
 
   def show
