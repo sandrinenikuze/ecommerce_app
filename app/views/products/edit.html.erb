@@ -15,9 +15,9 @@
     Supplier: 
     <select name="supplier_id">
       <option value="" disabled selected></option>
-      <% @suppliers.each do |supplier| %>
+        <% @suppliers.each do |supplier| %>
         <option value="<%= supplier.id %>"><%= supplier.name %></option>
-      <% end %>
+        <%end%>
     </select>
   </div>
   <div>

@@ -5,7 +5,8 @@ class ProductsController < ApplicationController
         @products = Product.all.order(price: params[:sort])
       elsif params[:filter] =="discount"
         @products = Product.where("price <= ?", 100)
-
+      elsif params[:category]
+        @products =  Category.find_by(name: params[:category]).products
       else
         @products = Product.all
       end
@@ -17,6 +18,7 @@ class ProductsController < ApplicationController
         @Products= Product.all
       end 
     end
+
     
 
   def show
@@ -42,13 +44,14 @@ class ProductsController < ApplicationController
 
   def edit
    @product = Product.find_by(id: params[:id])
+   @suppliers = Supplier.all
   end
   def update
    product = Product.find_by(id: params[:id])
    product.name = params[:name]
    product.price =  params[:price]
    product.description = params[:description]
-   product.suppplier_id = params[:suppplier_id]
+   product.supplier_id = params[:supplier_id]
    product.save
    flash[:success] = "Product update"
    redirect_to "/products"

@@ -1,15 +1,37 @@
 <h1>Product</h1>
 
-<h2><%= @product.name %></h2>
-<h2><%= @product.price%></h2>
-<h2><%=@product.description%></h2>
-<h2><%= @product.supplier.name %></h2>
+<h2>Product Name:<%= @product.name%></h2>
+<h2>Product Price:$<%= @product.price%></h2>
+<h2>Product description:<%=@product.description%></h2>
+<h2>Product supplier:<%= @product.supplier.name %></h2>
+<ul>
+<% @product.categories.each do |category|%>
+  <h2>Product Category:
+    <li><%= category.name%></li>
+  </h2>
+<% end %>
+</ul>
 <% @product.images.each do |image| %>
   <img class="show_images" src="<%=image.url%>">
 <%end%>
 
 
+
+<%= form_tag "/carted_products", method: :post do %>
+  <div>
+  Quantity <input type="text" name ="quantity">
+  <input type="hidden" name ="product_id" value="<%= @product.id %>">
+  </div>
+  <div>
+  <input type="Submit" value="Add to Cart!">
+  </div>
+<%end%>
 <%= button_to "Delete", "/products/#{@product.id}", method: :delete %>
 <%= button_to "Edit", "/products/#{@product.id}/edit", method: :get %>
+  
+  
+
+
+
 
 
